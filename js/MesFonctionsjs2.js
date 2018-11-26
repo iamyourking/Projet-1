@@ -1,15 +1,14 @@
 function AfficherListeDocuments2(){
 
-    $.ajax({type:"GET",
+    $.ajax({
+            type:"GET",
             url:"../php/listedocs2.php",
-            success:function(data)
-        {
+            success:function(data){
             var lesSecteurs = $.parseJSON(data); 
             console.log(lesSecteurs);
             var chaine = "<?php mb_internal_encoding('UTF-8'); ?><table border =2 style='background-color : whitesmoke; margin : auto;'> <tr> <th>Nom</th><th>Type de fichier</th><th>Contenue</th><th>Date d'ajout</th></tr>";
 
-            for(var Secteurs in lesSecteurs)
-            {
+            for(var Secteurs in lesSecteurs){
 
 
                 chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].file+"</th>";

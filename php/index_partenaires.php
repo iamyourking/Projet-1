@@ -85,6 +85,7 @@ if ( $_SESSION['loggedin1'] == true) {
 							</div>
 						</div>
 						<br><br>
+<!--
 						<div class="row">
 							<div class="col">
 									<button id="butentre">
@@ -94,6 +95,7 @@ if ( $_SESSION['loggedin1'] == true) {
 							</div>
 						</div>
                             <br><br>
+-->
                         </div>
                     </div>
                 </div>

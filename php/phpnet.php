@@ -49,14 +49,15 @@ try {
     $mail->isHTML(true);                                  // Set email format to HTML
     $titre = $recup['titre'];
     $mail->Subject = "Candidature $titre";
-    $destnom = $recup3['nom'];
-    $destprenom = $recup3['prenom'];
+    $destnom = $_SESSION['etudiant']['nom'];
+    $destprenom = $_SESSION['etudiant']['prenom'];
     $link = $_SESSION['etudiant']['id'];
-    $mail->Body    = "<b>Nouvelle Candidature sur GeoLoc !<br>Voici le profil du candidat : il se prénomme $destnom $destprenom.</b> <a href='http://localhost/Projet/Geoloc/php/candidatures.php?id=$link'>Cliquez ici !</a>";
+    $mail->Body    = "<b>Nouvelle Candidature sur GeoLoc !<br>Voici le profil du candidat : il se prénomme $destnom $destprenom.</b><br> <a href='http://localhost/Projet/Geoloc/php/candidatures.php?id=$link'>Cliquez ici !</a>";
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+     echo '<script>alert("Candidature envoyée.");</script>';
+            header("refresh:0.1;url=../index.php");
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
 }

@@ -104,23 +104,25 @@ function AfficherListeJeunes()
             var lesSecteurs = $.parseJSON(data);
             console.log(lesSecteurs);
             var chaine = "<table border =2 style='background-color : whitesmoke;'> <tr> <th>ID</th><th>NOM</th>  <th>PRENOM</th> <th>SECTION</th><th>ANNEE</th> </tr>";
-
+//            for (var i=0; i < 4; i++) {
             for(var Secteurs in lesSecteurs)
             {
-
+                
 
                 chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].id+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].nom+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].prenom+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filiere+"</th>";
-                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th> </tr>";
-
-
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th>"; 
+                chaine = chaine +	" <th>"+"<form action='../php/candidatures.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Profil'/></form></th></tr>";
+                
+                
             }
-
+            
+            chaine = chaine + "BOF";
+            
 
             chaine = chaine + "</table>";
-
 
 
             $("#col").html("");
@@ -155,13 +157,14 @@ function AfficherListeFiliere() {
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].nom+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].prenom+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filiere+"</th>";
-                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th> </tr>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th>";
+                chaine = chaine +	" <th>"+"<form action='../php/candidatures.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Profil'/></form></th></tr>";
 
 
             }
 
 
-            chaine = chaine + "</table><select id='selecteur'><option>Trier Section</option><option>Tous</option><option>BTS SIO</option><option>BTS CG</option><option>BTS NDRC</option><option>BTS MUC</option></select>";
+            chaine = chaine + "</table>";
 
 
 
@@ -220,37 +223,50 @@ function AfficherListeDocuments(){
 
 }
 
-function AfficherListeDocuments2(){
 
+
+
+
+
+
+
+
+
+
+function AfficherPageListe()
+{
     $.ajax({
         type:"GET",
-        url:"../php/listedocs2.php",
+        url:"../pages.php",
         success:function(data)
         {
+            // Version 2
             var lesSecteurs = $.parseJSON(data);
             console.log(lesSecteurs);
-            var chaine = "<?php mb_internal_encoding('UTF-8'); ?><table border =2 style='background-color : whitesmoke; margin : auto;'> <tr> <th>Nom</th><th>Type de fichier</th><th>Contenue</th><th>Date d'ajout</th></tr>";
-
+            var chaine = "<table border =2 style='background-color : whitesmoke;'> <tr> <th>ID</th><th>NOM</th>  <th>PRENOM</th> <th>SECTION</th><th>ANNEE</th> </tr>";
+//            for (var i=0; i < 4; i++) {
             for(var Secteurs in lesSecteurs)
             {
+                
 
-
-                chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].file+"</th>";
-                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].type+"</th>";
-                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].doc+"</th>";
-                chaine = chaine +   " <th>"+lesSecteurs[Secteurs].date_ajout+"</th>";
-                chaine = chaine +   " <th>"+"<a href=../uploads/"+lesSecteurs[Secteurs].file+">Voir</a></th></tr><br>";
-
-
-
+                chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].id+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].nom+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].prenom+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filiere+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th>"; 
+                chaine = chaine +	" <th>"+"<form action='../php/candidatures.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Profil'/></form></th></tr>";
+                
+                
             }
+            
+            chaine = chaine + "BOF";
+            
 
-
-            chaine = chaine + "</table><br><br>";
-
-
+            chaine = chaine + "</table>";
 
             $("#col").append(chaine);
+            $("#col").html("");
+
 
 
         },
@@ -259,5 +275,4 @@ function AfficherListeDocuments2(){
             alert('Erreur du script PHP');
         }
     });		
-
 }

@@ -1,7 +1,10 @@
 <?php
 session_start();
+mb_internal_encoding('UTF-8');
 require('functions.php');
-if ( $_SESSION['loggedin1'] == true) {
+$idmail = $_GET['id'];
+$_SESSION['idmail'] = $idmail;
+//if ( $_SESSION['loggedin1'] == true) {
     //    var_dump($_SESSION['etudiant']);
     //echo "Welcome to the member's area, " . $_SESSION['login'] . "!";
     
@@ -10,10 +13,10 @@ $offre = $bdd->query("SELECT id, nom, prenom, mail, annee, filiere FROM jeunes W
     
 $result = $offre->fetch(PDO::FETCH_ASSOC);    
 
-} else {
-    header("refresh:0.1;url=../index.php");
-    echo '<script>alert("Veuillez vous identifier dans l\'espace partenaires.");</script>';
-}
+//} else {
+//    header("refresh:0.1;url=../index.php");
+//    echo '<script>alert("Veuillez vous identifier dans l\'espace partenaires.");</script>';
+//}
 
 
 ?>
@@ -32,7 +35,7 @@ $result = $offre->fetch(PDO::FETCH_ASSOC);
         <script src="../js/bootstrap.min.js"></script>
 
         
-        <script type="text/javascript" src="../JS/MesFonctionsjs2.js"></script>
+        <script type="text/javascript" src="../js/MesFonctionsjs2.js"></script>
 
         <script type="text/javascript">
             $
@@ -45,7 +48,6 @@ $result = $offre->fetch(PDO::FETCH_ASSOC);
 
             );
         </script>
-
     </head>
 
     <body>
