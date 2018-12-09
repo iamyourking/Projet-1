@@ -2,12 +2,12 @@
 /* CSS Document */
 @font-face {
 	font-family: "Run";
-	src: url('Run! Demo.otf');
+	src: url('font/Run! Demo.otf');
 }
 
 @font-face {
 	font-family: "GoodMorning";
-	src: url('Good Morning.ttf');
+	src: url('font/Good Morning.ttf');
 }
 
 

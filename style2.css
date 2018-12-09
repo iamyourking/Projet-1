@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family: "Run";
+	src: url('font/Run! Demo.otf');
+}
+
+@font-face {
+	font-family: "GoodMorning";
+	src: url('font/Good Morning.ttf');
+}
+
+@font-face {
+	font-family: "Miraculous";
+	src: url('font/Miraculous&Christmas.ttf');
+}
+
+.nav-item a {
+    font-family: "Miraculous";
+    color: black
+}
+
+.navbar1 {
+    border-right: 2.5px double rgb(35, 14, 70);
+    background-color: whitesmoke;
+    padding: 1%;
+    
+}
+
+
+
+.text {
+    padding: 4%;
+}
+
+ul li {
+    
+}
+
+h1 {
+    font-family: "Run";
+    color: whitesmoke;
+}
