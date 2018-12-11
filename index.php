@@ -86,7 +86,7 @@
             <div class="col-sm-4 listprojet order-12" style="display: inline-block; ">
                 <article class="post">
                     <figure>
-                        <a href="/Geoloc/">
+                        <a href="Geoloc/">
                             <img src="geoloc.png" alt="" style="width: 100% ;">
                         </a>
                     </figure>
