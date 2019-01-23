@@ -46,9 +46,9 @@ else {
                     <div class="partenaires animated fadeInRight">
                         <h1 id="part"><?php echo 'PARTENAIRES' ?></h1>
                         <br>
-                        <form action="php/connexion_partenaires.php" method="post">
+                        <form action="php/connect-switch.php" method="post">
                             <p>Siret : <br>
-                                <input style="width : 250px;" type="text" name="siret" placeholder="Entrer votre n° de siret"/>
+                                <input style="width : 250px;" type="text" name="email" placeholder="Entrer votre n° de siret"/>
                             </p>
 
                             <p>Mot de passe : 
@@ -102,7 +102,7 @@ else {
                             <p>
                                 <input type="submit" value="Connexion" id="butjeun"/>
                                 <br>
-                                <a href="php/nouveau_jeunes.php">S'inscrire</a>
+                                <!-- <a href="php/nouveau_jeunes.php">S'inscrire</a> -->
                             </p>
                         </form>
                     </div>

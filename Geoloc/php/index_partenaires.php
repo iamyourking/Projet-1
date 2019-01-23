@@ -1,6 +1,7 @@
 <?php
 session_start();
 if ( $_SESSION['loggedin1'] == true) {
+    var_dump($_SESSION['jeunes']);
     //    var_dump($_SESSION['partenaire']);
     //echo "Welcome to the member's area, " . $_SESSION['login'] . "!";
 } else {
