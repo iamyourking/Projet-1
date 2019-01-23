@@ -1,0 +1,101 @@
+ul {
+  padding-top: 20vh;
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+li:hover {
+  background-color: beige;
+  transition: 0, 4s;
+}
+
+.menu {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.app {
+  overflow: overlay;
+  background-color: whitesmoke;
+}
+
+.sidebar {
+  height: 90vh;
+  background-color: lightpink;
+}
+
+.topbar {
+  height: 10vh;
+  background-color: lightpink;
+}
+
+.btn-addpost {
+  margin: auto;
+  display: block;
+}
+
+.input-form {
+  margin: auto;
+  display: block;
+}
+
+form p {
+  text-align: center;
+  font-weight: bold;
+}
+
+.offerboard {
+  border-right: 1px solid lightgrey;
+  height: 80vh;
+  /* background-color : brown; */
+  text-align: center;
+}
+
+.infoboard {
+  border-left: 1px solid lightgrey;
+  height: 80vh;
+  /* background-color : aliceblue; */
+}
+
+.infosignin {
+  border-left: 1px solid lightgrey;
+  height: 80vh;
+  /* background-color : aliceblue; */
+  text-align: center;
+}
+
+.profileimage {
+  border-radius: 50%;
+  border: 5px double pink;
+  display: block;
+  margin: auto;
+}
+
+.profileimage:hover {
+  filter: contrast(1.15);
+  border: 5px double pink;
+  transition: 0, 4s;
+}
+
+.details p, .details h3 {
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.inputplot {
+  width: 50% !important;
+  margin: auto !important;
+  text-align: center !important;
+  display: block !important;
+}
+
+/*# sourceMappingURL=istyle.scss.map */

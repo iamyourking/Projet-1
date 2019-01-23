@@ -36,7 +36,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
             <ul class="menu">
             <?php
                 if (isset($_SESSION['jeunes']) == true){
-                    echo '<li><a href="index1.php">Home</a></li>';
+                    echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
                     echo '<li><a href="profile.php">Modifier profil</a></li>';
                     // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';

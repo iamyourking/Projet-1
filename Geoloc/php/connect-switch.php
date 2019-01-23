@@ -46,19 +46,6 @@ try {
     }
 }
 
-
-// switch ($i) {
-//     case "etudiant":
-//         echo "i égal 0";
-//         break;
-//     case "partenaire":
-//         echo "i égal 1";
-//         break;
-//     case "admin":
-//         echo "i égal 2";
-//         break;
-// }
-
 catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }

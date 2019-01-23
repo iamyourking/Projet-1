@@ -61,7 +61,7 @@
                 </form>
                 <hr>
                 <br>
-                <form action="">
+                <form action="new_partner.php">
                     <h3>Vous êtes un nouveau partenaire et vous souhaitez déposer une offre ?</h3>
                     <br>
                     <input class="btn-addpost" style="width: 250px; height:55px;" type="submit" value="Cliquez ici !">

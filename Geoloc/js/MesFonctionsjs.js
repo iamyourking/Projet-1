@@ -2,7 +2,7 @@ function AfficherListeOffres()
 {
     $.ajax({
         type:"GET",
-        url:"../php/listeOffre.php",
+        url:"geoloc/php/listeOffre.php",
         success:function(data)
         {
 

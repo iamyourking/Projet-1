@@ -1,13 +1,13 @@
 <?php 
 function connexionBase() {
     try {
-        $bdd = new PDO('mysql:host=localhost;dbname=geoloc;charset=utf8', 'root', 'root'); }
+        $bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root'); }
     catch (PDOException $e) {echo 'Échec de connexion : ' . $e->getMessage();}
     return $bdd;
 }
 
 function recupererDonnee() {
-    $requete = "SELECT id,nom,prenom,filiere,annee FROM jeunes";
+    $requete = "SELECT id,nom,prenom,filiere,annee FROM users";
     $stmt = connexionBase()->query($requete);
     $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -34,7 +34,7 @@ function recupererOffre() {
 
 function ajoutOffre() {
     session_start();
-    $bdd = new PDO('mysql:host=localhost;dbname=geoloc;charset=utf8', 'root', 'root');
+    $bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root');
     
         
         $req = $bdd->prepare("INSERT INTO ajout_offre(titre, filiere, date_debut, duree, adresse, ville, code_postal, telephone, description, id_partenaire, date_ajout) VALUES(:titre, :filiere, :date_debut, :duree, :adresse, :ville, :code_postal, :telephone, :description, :id, NOW())");

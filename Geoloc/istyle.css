@@ -21,6 +21,7 @@ ul {
 .app {
     overflow : overlay;
     background-color: whitesmoke;
+    box-shadow:         inset 0 0 10px #000000;
 }
 .sidebar {
     height:90vh;
@@ -54,6 +55,12 @@ form p {
     height: 80vh;
     /* background-color : aliceblue; */
 }
+.infosignin {
+    border-left: 1px solid lightgrey;
+    height: 80vh;
+    /* background-color : aliceblue; */
+    text-align: center;
+}
 .profileimage{
     border-radius: 50%;
     border: 5px double pink;
@@ -63,10 +70,16 @@ form p {
 .profileimage:hover {
     filter: contrast(1.15);
     border: 5px double pink;
-    transition: 0,7s;
+    transition: 0,4s;
 }
 .details p, .details h3 {
     text-align:center;
     display:block;
     margin:auto;
+}
+.inputplot {
+    width: 50%!important;
+    margin: auto!important;
+    text-align: center!important;
+    display: block!important;
 }
