@@ -1,5 +1,14 @@
+:root {
+    --c-pink : lightpink;
+    --c-blue : lightblue;
+    --c-gold : gold;
+    --c-brown : brown;
+    --color : var(--c-brown);
+}
+
+
 ul {
-    padding-top: 20vh;
+    padding-top: 30vh;
     padding-left: 0;
 }
     li {
@@ -9,10 +18,22 @@ ul {
         font-size: 22px;
         font-weight: bold;
         text-align: center;
+        color: black;
+    }
+    .sidebar li a {
+        color: whitesmoke;
+        text-shadow: whitesmoke 0 0 3px;
     }
     li:hover {
-        background-color: beige;
+        background-color: whitesmoke;
+        color:var(--color);
+        box-shadow: inset 0 0 6px #000000;
         transition: 0,4s;
+    }
+    li:hover a {
+        color: var(--color);
+        text-shadow: var(--color) 0 0 2px;
+
     }
 .menu {
     padding-left:0;
@@ -21,15 +42,21 @@ ul {
 .app {
     overflow : overlay;
     background-color: whitesmoke;
-    box-shadow:         inset 0 0 10px #000000;
+    box-shadow: inset 0 0 10px #000000;
+    border-top-left-radius: 10px;
 }
 .sidebar {
-    height:90vh;
-    background-color: lightpink;
+    height:95vh;
+    background-color: var(--color);
 }
 .topbar {
-    height:10vh;
-    background-color: lightpink;
+    height:5vh;
+    background-color: var(--color);
+}
+.topbar img {
+    filter: brightness(0) invert(1);
+    padding: 10px;
+    display: block;
 }
 .btn-addpost {
     margin: auto;
@@ -63,13 +90,13 @@ form p {
 }
 .profileimage{
     border-radius: 50%;
-    border: 5px double pink;
+    border: 5px double var(--color);
     display: block;
     margin:auto;
 }
 .profileimage:hover {
     filter: contrast(1.15);
-    border: 5px double pink;
+    border: 5px double var(--color);
     transition: 0,4s;
 }
 .details p, .details h3 {
@@ -82,4 +109,33 @@ form p {
     margin: auto!important;
     text-align: center!important;
     display: block!important;
+}
+
+#offre {
+    padding : 35px;
+}
+table {
+    border-collapse: collapse; 
+    border-bottom-color: darkgray; 
+    border-top: none; 
+    border-right: none; 
+    border-left: none;
+    width: 100%;
+}
+
+.tabhead {
+    font-size: 22px;
+    color:  var(--color);
+
+}
+.tabhead th {
+    border: 2px solid lightgrey;
+}
+th {
+    text-align: center;
+    padding : 10px;
+}
+.headplot {
+    background-color: var(--color);
+    border : 3px solid white;
 }

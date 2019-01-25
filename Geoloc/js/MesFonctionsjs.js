@@ -2,19 +2,19 @@ function AfficherListeOffres()
 {
     $.ajax({
         type:"GET",
-        url:"geoloc/php/listeOffre.php",
+        url:"php/listeOffre.php",
         success:function(data)
         {
 
             // Version 2
             var lesSecteurs = $.parseJSON(data);
             console.log(lesSecteurs);
-            var chaine = "<table border =2 style='background-color : whitesmoke; border-collapse: collapse; border-bottom-color: darkgray; border-top: none; border-right: none; border-left: none;'> <tr><th></th> <th>TITRE</th><th>FILIERE</th><th>Jour publication</th> <th>VILLE</th></tr>";
+            var chaine = "<table border =2> <tr class='tabhead'><th></th> <th>TITRE</th><th>FILIERE</th><th>Jour publication</th> <th>VILLE</th></tr>";
 
             for(var Secteurs in lesSecteurs)
             {
 
-                chaine = chaine +   " <form action='../php/testpdf.php' method='get'><tr><th><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"></input></th>";
+                chaine = chaine +   " <form action='../php/testpdf.php' method='get'><tr><th class='headplot'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"></input></th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].titre+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filiere+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].date_ajout+"</th>";
@@ -184,7 +184,7 @@ function AfficherListeDocuments(){
 
     $.ajax({
         type:"GET",
-        url:"../php/listedocs.php",
+        url:"php/listedocs.php",
         success:function(data)
         {
             // Version 2

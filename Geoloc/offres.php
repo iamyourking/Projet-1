@@ -71,8 +71,13 @@ $listeoffres = recupererOffre();
             </ul>
         </div>
         <div class="col-10 app">
+            <div class="row">
+            
+            <div class="col" id="offre"></div>
+            <!-- <div class="col"></div> -->
+            
+            </div>
 
-             <div class="col" id="offre"></div>
 
         </div>
     </div>
