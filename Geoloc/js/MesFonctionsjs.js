@@ -183,7 +183,7 @@ function AfficherListeFiliere() {
 function AfficherListeDocuments(){
 
     $.ajax({
-        type:"GET",
+        type:"POST",
         url:"php/listedocs.php",
         success:function(data)
         {
@@ -200,7 +200,7 @@ function AfficherListeDocuments(){
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].type+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].doc+"</th>";
                 chaine = chaine +   " <th>"+lesSecteurs[Secteurs].date_ajout+"</th>";
-                chaine = chaine +   " <th>"+"<a href=../uploads/"+lesSecteurs[Secteurs].file+">Voir</a></th></tr><br>";
+                chaine = chaine +   " <th>"+"<a href=./uploads/"+lesSecteurs[Secteurs].file+">Voir</a></th></tr><br>";
 
 
 

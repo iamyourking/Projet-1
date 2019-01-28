@@ -23,7 +23,7 @@ if(isset($_POST['btn-upload']))
 	if(move_uploaded_file($file_loc,$folder.$final_file))
 	{     
               try{
-$connexion = new PDO('mysql:host=localhost;dbname=geoloc;charset=utf8', 'root', 'G7family91');
+$connexion = new PDO('mysql:host=localhost;dbname=geoloc;charset=utf8', 'root', 'root');
 } catch (PDOException $e) {
 	echo 'Echec lors de la connexion : ' .$e->getMessage();
 }

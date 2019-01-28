@@ -1,10 +1,20 @@
 <?php 
+session_start();
 function connexionBase() {
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root'); }
     catch (PDOException $e) {echo 'Échec de connexion : ' . $e->getMessage();}
     return $bdd;
 }
+
+function getPicture() {
+    $sqlimage = "SELECT file from documents where doc = 'PP' AND id_user = '".$_SESSION['jeunes']['id']."' ";
+    $stmt = connexionBase()->query($sqlimage);
+    $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $res['file'];
+}
+
 
 function recupererDonnee() {
     $requete = "SELECT id,nom,prenom,filiere,annee FROM users";

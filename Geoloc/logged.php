@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require('php/functions.php');
 if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == false) {
     session_destroy();
 }
@@ -11,13 +12,16 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
         <title>Geoloc</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0">
+        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
+
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="istyle.css">
         <link rel="stylesheet" href="../css/animate.css">
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
 
         <style type="text/css">
        
@@ -100,7 +104,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
                 <div class="col infoboard">
                 <br>
                     <div class="row">
-                        <img class="profileimage" style="width: 200px"; height="200px;" src="img/fab.jpeg" alt="">
+                        <img class="profileimage" style="width: 200px"; height="200px;" src="uploads/<?php echo getPicture(); ?>" alt="">
                     </div>
                     <br>
                     <hr>

@@ -1,9 +1,10 @@
 <?php 
 session_start();
 require('php/functions.php');
-if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == false) {
+if ( isset($_SESSION['loggedin']) == false) {
     session_destroy();
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +13,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
         <title>Geoloc</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="initial-scale=1.0">
-
+        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
         <script type="text/javascript" src="js/MesFonctionsjs.js"></script>
         <script type="text/javascript">
             $
@@ -20,6 +21,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
                 function()
                 {
                     AfficherListeDocuments();
+                    
 
                 }
 
@@ -32,7 +34,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
         <script src="js/bootstrap.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
-        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+
 
         <style type="text/css">
        
@@ -52,6 +54,7 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
         <div class="col-2 menu">
             <ul class="menu">
             <?php
+            // Menu Jeunes
                 if (isset($_SESSION['jeunes']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
@@ -100,6 +103,12 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
             <hr>
             <div class="row">
                 <div class="col offerboard">
+                <?php
+                
+                // 
+
+
+                ?>
                 <br> <br>
                 <form action="../php/modif_jeunes.php" method="post">
 
@@ -123,21 +132,26 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
 
                  </div>
                     <div class="row">
-                    <form action="php/upload.php" method="post" enctype="multipart/form-data"><br>
+                    <form action="php/upload.php" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col"><p>C.V :</p>
-                                <input type="file" name="file" /> <br>
+                        <div class="col">
+                            <span>
+                            <p>C.V :</p> <br>
+                                <input type="file" name="file" />
                                 <input type="submit" name="btn-upload" value="Importer C.V" style="width : auto;"/>
-                            </div>
+                            </span>
+                        </div>
                         </div>
                     </form>
-                    <br>
                     <form action="upload2.php" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col"> <p>Lettre de Motivation :</p>   
-                                <input type="file" name="ldm" /> <br>
+                        <div class="col">
+                        <span>
+                            <p>Lettre de Motivation :</p>   <br>
+                                <input type="file" name="ldm" />
                                 <input type="submit" name="btn-upload" value="Importer Lettre de motivation" style="width : auto;"/>
-                            </div>
+                            </span>
+                        </div>
                         </div>
                         <br>
                     </form>
@@ -148,11 +162,19 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
                 <div class="col infoboard">
                 <br>
                     <div class="row">
-                        <img class="profileimage" style="width: 200px"; height="200px;" src="img/fab.jpeg" alt="">
+                        <img class="profileimage" style="width: 200px"; height="200px;" src="uploads/<?php echo getPicture(); ?>" alt="">
                     </div>
                     <br>
                     <hr>
                     <br>
+                    <div class="row">
+                        <form action="change-pp.php" method="post" enctype="multipart/form-data">
+                            <p>Modifier Photo de profil :</p>
+                            <span>
+                                <input type="file" name="file"/> <input type="submit" name="btn-upload">
+                            </span>
+                        </form>
+                    </div>
 
         
                 </div>
