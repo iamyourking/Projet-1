@@ -71,6 +71,9 @@ function ajoutOffre() {
 if(isset($_POST['signin'])) {
     ajoutOffre();
 }
+
+
+
 //function formOffre() {
 //    echo '<form method="post" action="" id="desc_offre"><br>
 //    <h5>Intitulé du poste :

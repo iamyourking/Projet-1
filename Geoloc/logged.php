@@ -1,9 +1,23 @@
 <?php 
 session_start();
 require('php/functions.php');
+$bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root');
 if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == false) {
     session_destroy();
 }
+if (isset($_SESSION['administrateur'])) { 
+    $rnum = $bdd->query("SELECT * FROM users WHERE grade = 'etudiant'") ;
+    $countjeunes = $rnum->rowCount();
+    $rnum = $bdd->query("SELECT * FROM users WHERE grade = 'partenaires'") ;
+    $countpartenaire = $rnum->rowCount();
+    $rnum = $bdd->query("SELECT * FROM ajout_offre") ;
+    $countoffre = $rnum->rowCount();
+}
+if (isset($_SESSION['jeunes'])) { 
+    $rnum = $bdd->query("SELECT * FROM ajout_offre") ;
+    $countoffre = $rnum->rowCount();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +53,35 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
         <div class="col-2 menu">
             <ul class="menu">
             <?php
+
+                // Menu Jeunes
                 if (isset($_SESSION['jeunes']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
                     echo '<li><a href="profile.php">Modifier profil</a></li>';
+                    // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
+                    // echo '<li><a href="adminlogin.php">Admin.</a></li>';
+                  echo ' <br>
+                    <br>
+                    <br>';
+                }
+                // Menu Entreprise
+                if (isset($_SESSION['partenaires']) == true){
+                    echo '<li><a href="logged.php">Home</a></li>';
+                    echo '<li><a href="offres.php">Consulter offres</a></li>';
+                    echo '<li><a href="profile.php">Modifier profil</a></li>';
+                    // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
+                    // echo '<li><a href="adminlogin.php">Admin.</a></li>';
+                  echo ' <br>
+                    <br>
+                    <br>';
+                }
+                // Menu Administrateurs
+                if (isset($_SESSION['administrateur']) == true){
+                    echo '<li><a href="logged.php">Home</a></li>';
+                    echo '<li><a href="offres.php">Liste entreprises</a></li>';
+                    echo '<li><a href="profile.php">Liste étudiants</a></li>';
+                    echo '<li><a href="">Gestion admin.</a></li>';
                     // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
                     // echo '<li><a href="adminlogin.php">Admin.</a></li>';
                   echo ' <br>
@@ -87,19 +126,42 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
             <hr>
             <div class="row">
                 <div class="col offerboard">
-                <br> <br>
-                <article>
-                    <h3>Vous avez postulez à : 15 offres</h3>
-                </article>
-                <br> <hr> <br>
-                <article>
-                    <h3>Vous avez 3 offres en attente de réponse</h3>
-                </article>
-                <br> <hr> <br>
-                <article>
-                    <h3>Vous avez 12 offres ayant une réponse</h3>
-                </article>
-                <br> <hr> <br>
+            <?php
+            // Contenue Administrateur
+                if (isset($_SESSION['administrateur'])) {
+                    echo '<br> <br>
+                    <article>
+                        <h6>L\'établissement compte actuellement : ';echo $countjeunes; echo ' étudiants inscrit.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6>';echo $countpartenaire; echo ' Entreprises ont rejoint nôtre établissement actuellement.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6>';echo $countoffre; echo ' Offres ont été déposées à ce jour.</h6>
+                    </article>
+                    ';
+                 }
+                
+            // Contenue Étudiant
+                if (isset($_SESSION['jeunes'])) {
+                    echo '<br> <br>
+                    <article>
+                        <h6>';echo $countoffre; echo ' offres sont disponible.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6>';echo 'Il existe '; echo'pour votre filière.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6> Vous avez postulé à ';echo $countoffre; echo ' Offres à ce jour.</h6>
+                    </article>
+                    ';
+                }
+            ?>
+
                 </div>
                 <div class="col infoboard">
                 <br>
@@ -131,8 +193,13 @@ if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == f
                                     echo "<h3>",$_SESSION['jeunes']['filliere'],"</h3>";
                                     }
                                 if (isset($_SESSION['partenaires'])) { 
-                                    echo "<h3>",$_SESSION['partenaires']['entreprise'],"</h3>";
+                                    echo "<h3>",$_SESSION['partenaires']['entreprise'],"</h3><br>";
+                                    echo "<h3>",$_SESSION['partenaires']['fonction'],"</h3>";
                                     }
+                                if (isset($_SESSION['administrateur'])) { 
+                                    echo "<h3>",$_SESSION['administrateur']['fonction'],"</h3>";
+                                    }
+                                
                                 // if (isset($_SESSION['administrateur'])) { 
                                 //     echo "<h3><u>",$_SESSION['administrateur']['prenom']," ",$_SESSION['administrateur']['nom'],"</u></h3>";
                                 //     }

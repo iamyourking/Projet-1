@@ -36,7 +36,7 @@ try {
                             $result = $vlogin->fetch(PDO::FETCH_ASSOC);
                             $_SESSION['loggedin'] = true;
                             $_SESSION['administrateur'] = $result;
-                            header("location: index_admin.php");
+                            header("location: ../logged.php");
                         } else {
                             header("location: index.php");
                     }
