@@ -68,9 +68,21 @@ if ( isset($_SESSION['loggedin']) == true) {
                 </div>
             </div>
             <hr>
-            <form action="inscription_partenaires.php" method="post">
+
+            
             <div class="row">
-                <div class="col offerboard">
+
+            <div class="col offerboard">
+
+                <form action="change-pp.php" method="post" enctype="multipart/form-data">
+                    <p>Commencez par ajouter le logo de l'entreprise.</p>
+                    <span>
+                        <input type="hidden" name="key" value="entreprise">
+                        <input type="file" name="file"/> <input type="submit" name="btn-upload">
+                    </span>
+                </form>
+
+                <form action="php/inscription_partenaires.php" method="post">
                     <br>
                     <p>Nom de l'entreprise : <br></p>
                     <input style="width:250px;;" type="text" name="entreprise" placeholder="Renseignez le nom de vôtre entreprise." required >
@@ -80,6 +92,7 @@ if ( isset($_SESSION['loggedin']) == true) {
                     <br> <br>
                     <p>Fonction : <br> </p>
                     <input style="width : 250px;" type="text" name="fonction" placeholder="Entrez votre fonction." required >
+                    <br><br>
                     <br><br>
                     <input type="submit" value="Inscription"/>
                     

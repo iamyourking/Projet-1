@@ -139,3 +139,7 @@ th {
     background-color: var(--color);
     border : 3px solid white;
 }
+.listejeunes {
+    height: 47vh;
+    overflow: overlay;
+}

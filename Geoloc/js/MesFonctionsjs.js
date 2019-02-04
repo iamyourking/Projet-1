@@ -92,12 +92,11 @@ function AfficherListeCandidature()
 
 
 // Cette fonction affiche la liste des secteurs de notre supermarché
-
-function AfficherListeJeunes()
+function AfficherListeEntreprises()
 {
     $.ajax({
         type:"GET",
-        url:"../php/listejeunes.php",
+        url:"php/listepartenaires.php",
         success:function(data)
         {
             // Version 2
@@ -110,23 +109,69 @@ function AfficherListeJeunes()
                 
 
                 chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].id+"</th>";
+                // chaine = chaine +	" <th><img src=uploads/"+lesSecteurs[Secteurs].file+" style='width:50px; height='50px; '></th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].nom+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].prenom+"</th>";
-                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filiere+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].fonction+"</th>";
+                // chaine = chaine +	" <th>"+lesSecteurs[Secteurs].id_entreprise+"</th>"; 
+                chaine = chaine +	" <th>"+"<form action='../php/candidatures.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Profil'/></form></th></tr>";
+                
+                
+            }
+            
+            // chaine = chaine;
+            
+
+            chaine = chaine + "</table>";
+
+
+            $("#colpartenaires").html("");
+            $("#colpartenaires").append(chaine);
+
+
+        },
+        error : function()
+        {
+            alert('Erreur du script PHP');
+        }
+    });		
+}
+
+function AfficherListeJeunes()
+{
+    $.ajax({
+        type:"GET",
+        url:"php/listejeunes.php",
+        success:function(data)
+        {
+            // Version 2
+            var lesSecteurs = $.parseJSON(data);
+            console.log(lesSecteurs);
+            var chaine = "<table border =2 style='background-color : whitesmoke;'> <tr> <th>ID</th><th>PHOTO</th><th>NOM</th>  <th>PRENOM</th> <th>SECTION</th><th>ANNEE</th> </tr>";
+//            for (var i=0; i < 4; i++) {
+            for(var Secteurs in lesSecteurs)
+            {
+                
+
+                chaine = chaine +	" <tr><th>"+lesSecteurs[Secteurs].id+"</th>";
+                chaine = chaine +	" <th><img src=uploads/"+lesSecteurs[Secteurs].file+" style='width:50px; height='50px;'></th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].nom+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].prenom+"</th>";
+                chaine = chaine +	" <th>"+lesSecteurs[Secteurs].filliere+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].annee+"</th>"; 
                 chaine = chaine +	" <th>"+"<form action='../php/candidatures.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Profil'/></form></th></tr>";
                 
                 
             }
             
-            chaine = chaine + "BOF";
+            // chaine = chaine;
             
 
             chaine = chaine + "</table>";
 
 
-            $("#col").html("");
-            $("#col").append(chaine);
+            $("#coljeunes").html("");
+            $("#coljeunes").append(chaine);
 
 
         },

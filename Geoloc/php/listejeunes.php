@@ -2,7 +2,7 @@
 require('functions.php');
 mb_internal_encoding('UTF-8');
 
-$res = connexionBase()->prepare("SELECT id,nom,prenom,filiere,annee FROM jeunes ORDER BY nom");
+$res = connexionBase()->prepare("SELECT users.id,nom,prenom,filliere,annee,file FROM users INNER JOIN documents ON users.id = documents.id_user WHERE grade = 'etudiant' AND doc = 'PP' ORDER BY nom");
 $res->execute();
 $lesSecteurs = array();
 while($ligne=$res->fetch(PDO::FETCH_ASSOC))

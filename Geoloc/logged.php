@@ -54,7 +54,12 @@ if (isset($_SESSION['jeunes'])) {
             <ul class="menu">
             <?php
 
+
+                //////////////
                 // Menu Jeunes
+                //////////////
+                //
+                //
                 if (isset($_SESSION['jeunes']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
@@ -65,7 +70,13 @@ if (isset($_SESSION['jeunes'])) {
                     <br>
                     <br>';
                 }
+
+
+                //////////////////
                 // Menu Entreprise
+                //////////////////
+                //
+                //
                 if (isset($_SESSION['partenaires']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
@@ -76,12 +87,19 @@ if (isset($_SESSION['jeunes'])) {
                     <br>
                     <br>';
                 }
+
+
+                ///////////////////////
                 // Menu Administrateurs
+                ///////////////////////
+                //
+                //
                 if (isset($_SESSION['administrateur']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
-                    echo '<li><a href="offres.php">Liste entreprises</a></li>';
-                    echo '<li><a href="profile.php">Liste étudiants</a></li>';
-                    echo '<li><a href="">Gestion admin.</a></li>';
+                    echo '<li><a href="offres.php">Liste offres</a></li>';
+                    echo '<li><a href="gestion.php">Gestion admin.</a></li>';
+                    echo '<li><a href="profile.php">Modifier profil</a></li>';
+                    
                     // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
                     // echo '<li><a href="adminlogin.php">Admin.</a></li>';
                   echo ' <br>
@@ -166,7 +184,12 @@ if (isset($_SESSION['jeunes'])) {
                 <div class="col infoboard">
                 <br>
                     <div class="row">
-                        <img class="profileimage" style="width: 200px"; height="200px;" src="uploads/<?php echo getPicture(); ?>" alt="">
+                    <?php
+                        if (isset($_SESSION['jeunes'])) {
+                        echo '<img class="profileimage" style="width: 200px"; height="200px;" src="uploads/',getPicture(),'" alt="">';
+                        }
+                    
+                    ?>
                     </div>
                     <br>
                     <hr>

@@ -64,6 +64,25 @@ $listeoffres = recupererOffre();
                     <br>
                     <br>';
                 }
+
+                ///////////////////////
+                // Menu Administrateurs
+                ///////////////////////
+                //
+                //
+                if (isset($_SESSION['administrateur']) == true){
+                    echo '<li><a href="logged.php">Home</a></li>';
+                    echo '<li><a href="offres.php">Liste offres</a></li>';
+                    echo '<li><a href="gestion.php">Gestion admin.</a></li>';
+                    echo '<li><a href="profile.php">Modifier profil</a></li>';
+                    
+                    // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
+                    // echo '<li><a href="adminlogin.php">Admin.</a></li>';
+                  echo ' <br>
+                    <br>
+                    <br>';
+                }
+
                     if (isset($_SESSION['loggedin']) == true){
                         echo '<li><a href="php/disconnect.php">Disconnect</a></li>';
                     }

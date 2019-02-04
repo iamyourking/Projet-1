@@ -45,7 +45,6 @@ else {
                 <ul class="menu">
                     <li><a href="index1.php">Home</a></li>
                     <li><a href="loginform.php">Connexion</a></li>
-                    <li><a href="adminlogin.php">Admin.</a></li>
                 </ul>
             </div>
             <div class="col-10 app">

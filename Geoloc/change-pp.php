@@ -28,33 +28,63 @@ if(isset($_POST['btn-upload']))
         catch (PDOException $e) {
 	        echo 'Echec lors de la connexion : ' .$e->getMessage();
         }
-        $req = $connexion->query("SELECT * FROM documents WHERE doc='PP' AND id_user='".$_SESSION['jeunes']['id']."'") ;
-        $count = $req->rowCount();
+        if($_POST['key'] !== 'entreprise' ) {
+        // Requete compteur photo de profil d'un utilisateur si = 0 création, si >0 remplacement
+            $req = $connexion->query("SELECT * FROM documents WHERE doc='PP' AND id_user='".$_SESSION['jeunes']['id']."'") ;
+            $count = $req->rowCount();
  
-        if ($count == 1) {
-            $req = $connexion->query("UPDATE documents SET file ='".$new_file_name."' WHERE doc='PP' AND id_user='".$_SESSION['jeunes']['id']."'");
+            if ($count > 0) {
+                $req = $connexion->query("UPDATE documents SET file ='".$new_file_name."' WHERE doc='PP' AND id_user='".$_SESSION['jeunes']['id']."'");
 	?>
-		    <script>
-		        alert('successfully uploaded -- 1');
+		        <script>
+		            alert('successfully uploaded -- 1');
+                    window.location.href='./profile.php?success';
+                </script>
+<?php
+            } else if ($count == 0) {
+                $req = $connexion->prepare("INSERT INTO documents(file,type,id_user,doc,date_ajout) VALUES(:file,:type,:id,:doc, NOW())");
+                $req->execute(array(
+                    ':file' => $final_file,
+                    ':type' => $file_type,
+                    ':id' => $_SESSION['jeunes']['id'],
+                    ':doc' => PP
+                ));
+    ?>
+            <script>
+		        alert('successfully uploaded -- 2');
                 window.location.href='./profile.php?success';
             </script>
 <?php
-        } else if ($count == 0) {
-            $req = $connexion->prepare("INSERT INTO documents(file,type,id_user,doc,date_ajout) VALUES(:file,:type,:id,:doc, NOW())");
-            $req->execute(array(
-                ':file' => $final_file,
-                ':type' => $file_type,
-                ':id' => $_SESSION['jeunes']['id'],
-                ':doc' => PP
-            ));
-    ?>
-        <script>
-		    alert('successfully uploaded -- 2');
-            window.location.href='./profile.php?success';
-        </script>
+            }  
+        } else if ($_POST['key'] == 'entreprise') {
+            // Requete compteur photo de profil d'une entreprise si = 0 création, si >0 remplacement
+            $req = $connexion->query("SELECT * FROM documents WHERE doc='PPE' AND id_entreprise='".$_SESSION['jeunes']['id']."'") ;
+            $count = $req->rowCount();
+ 
+            if ($count > 0) {
+                $req = $connexion->query("UPDATE documents SET file ='".$new_file_name."' WHERE doc='PP' AND id_user='".$_SESSION['jeunes']['id']."'");
+	?>
+		        <script>
+		            alert('successfully uploaded -- 1');
+                    window.location.href='./profile.php?success';
+                </script>
 <?php
-    }  
-}
+            } else if ($count == 0) {
+                $req = $connexion->prepare("INSERT INTO documents(file,type,id_user,doc,date_ajout) VALUES(:file,:type,:id,:doc, NOW())");
+                $req->execute(array(
+                    ':file' => $final_file,
+                    ':type' => $file_type,
+                    ':id' => $_SESSION['jeunes']['id'],
+                    ':doc' => PPE
+                ));
+    ?>
+            <script>
+		        alert('successfully uploaded -- 2');
+                window.location.href='./profile.php?success';
+            </script>
+<?php
+        }
+    }
 
 	else {
 	?>
