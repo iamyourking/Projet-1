@@ -20,7 +20,7 @@ function AfficherListeOffres()
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].date_ajout+"</th>";
                 chaine = chaine +	" <th>"+lesSecteurs[Secteurs].ville+"</th>";
                 chaine = chaine +	" <th>"+"<input type='submit' value='Voir'/></th></form>";
-                chaine = chaine +	" <th>"+"<form action='../php/phpnet.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Postuler'/></form></th></tr>";
+                chaine = chaine +	" <th>"+"<form action='php/phpnet.php' method='get'><input type='hidden' name='id' value="+lesSecteurs[Secteurs].id+"><input type='submit' value='Postuler'/></form></th></tr>";
                 //                chaine = chaine +   " <th>"+"<a href=../php/testpdf.php?"+lesSecteurs[Secteurs].file+">Voir</a></th></tr>";
 
 

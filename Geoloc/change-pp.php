@@ -78,15 +78,13 @@ if(isset($_POST['btn-upload']))
                     ':doc' => PPE
                 ));
     ?>
-            <script>
-		        alert('successfully uploaded -- 2');
-                window.location.href='./profile.php?success';
-            </script>
+                <script>
+		            alert('successfully uploaded -- 2');
+                    window.location.href='./profile.php?success';
+                </script>
 <?php
-        }
-    }
-
-	else {
+            }
+        } else {
 	?>
 		<script>
 		    alert('error while uploading file');

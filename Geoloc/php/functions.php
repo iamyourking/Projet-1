@@ -44,7 +44,7 @@ function recupererOffre() {
 
 function ajoutOffre() {
     session_start();
-    $bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root');
+    $bdd = new PDO('mysql:host=localhost;dbname=Geoloc2;charset=utf8', 'root', 'root');
     
         
         $req = $bdd->prepare("INSERT INTO ajout_offre(titre, filiere, date_debut, duree, adresse, ville, code_postal, telephone, description, id_partenaire, date_ajout) VALUES(:titre, :filiere, :date_debut, :duree, :adresse, :ville, :code_postal, :telephone, :description, :id, NOW())");
@@ -56,13 +56,13 @@ function ajoutOffre() {
 	           ':duree' => $_POST['duree'],
                ':adresse' => $_POST['address'],
                ':ville' => $_POST['ville'], 
-	           ':code_postal' => $_POST['dep'],
+	           ':code_postal' => $_POST['dp'],
                ':telephone' => $_POST['phone'],
                ':description' => $_POST['description'],
-               ':id' => $_SESSION['partenaire']['id']
+               ':id' => $_SESSION['partenaires']['id']
 	   ));
         echo '<script>alert("Offre saisie.");</script>';
-        header("refresh:0.1;url=../index.php");
+        header("refresh:0.1;url=../index1.php");
     
     
 }

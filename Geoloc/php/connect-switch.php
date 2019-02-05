@@ -17,7 +17,7 @@ try {
             header("location: ../logged.php");
         } else 
             if($count == 0) { 
-                $vlogin = $bdd->query("SELECT * FROM users WHERE email = '".$_POST['email']."' AND passw = '".$_POST['passw']."' AND grade = 'partenaire'") ;
+                $vlogin = $bdd->query("SELECT * FROM users WHERE email = '".$_POST['email']."' AND passw = '".$_POST['passw']."' AND grade = 'entreprise'") ;
                 $count = $vlogin->rowCount();
                 $login = $_POST['email'];
                 if($count == 1) {

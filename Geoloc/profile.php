@@ -65,6 +65,19 @@ if ( isset($_SESSION['loggedin']) == false) {
                     <br>
                     <br>';
                 }
+            // Menu partenaires
+            if (isset($_SESSION['partenaires']) == true){
+                echo '<li><a href="logged.php">Home</a></li>';
+                echo '<li><a href="offres.php">Consulter offres</a></li>';
+                echo '<li><a href="new_offer.php">Déposer offres</a></li>';
+                echo '<li><a href="profile.php">Modifier profil</a></li>';
+
+                // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
+                // echo '<li><a href="adminlogin.php">Admin.</a></li>';
+              echo ' <br>
+                <br>
+                <br>';
+            }
 
                 ///////////////////////
                 // Menu Administrateurs

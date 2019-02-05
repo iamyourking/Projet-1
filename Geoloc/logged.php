@@ -5,7 +5,7 @@ $bdd = new PDO('mysql:host=localhost;dbname=geoloc2;charset=utf8', 'root', 'root
 if ( isset($_SESSION['loggedin']) == false && isset($_SESSION['loggedin1']) == false) {
     session_destroy();
 }
-if (isset($_SESSION['administrateur'])) { 
+if (isset($_SESSION['administrateur']) || isset($_SESSION['partenaires'])) { 
     $rnum = $bdd->query("SELECT * FROM users WHERE grade = 'etudiant'") ;
     $countjeunes = $rnum->rowCount();
     $rnum = $bdd->query("SELECT * FROM users WHERE grade = 'partenaires'") ;
@@ -80,7 +80,9 @@ if (isset($_SESSION['jeunes'])) {
                 if (isset($_SESSION['partenaires']) == true){
                     echo '<li><a href="logged.php">Home</a></li>';
                     echo '<li><a href="offres.php">Consulter offres</a></li>';
+                    echo '<li><a href="new_offer.php">Déposer offres</a></li>';
                     echo '<li><a href="profile.php">Modifier profil</a></li>';
+
                     // echo '<!-- <li><a href="loginform.php">Connexion</a></li> -->';
                     // echo '<li><a href="adminlogin.php">Admin.</a></li>';
                   echo ' <br>
@@ -170,11 +172,28 @@ if (isset($_SESSION['jeunes'])) {
                     </article>
                     <br> <hr> <br>
                     <article>
-                        <h6>';echo 'Il existe '; echo'pour votre filière.</h6>
+                        <h6>';echo 'Il existe '; echo' offres pour votre filière.</h6>
                     </article>
                     <br> <hr> <br>
                     <article>
                         <h6> Vous avez postulé à ';echo $countoffre; echo ' Offres à ce jour.</h6>
+                    </article>
+                    ';
+                }
+
+            // Contenue Entreprise
+                if (isset($_SESSION['partenaires'])) {
+                    echo '<br> <br>
+                    <article>
+                        <h6>';echo $countjeunes; echo ' étudiants sont inscrits dans notre établissement.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6>';echo 'Il existe '; echo' offres provenant de vôtre entreprise.</h6>
+                    </article>
+                    <br> <hr> <br>
+                    <article>
+                        <h6> ';echo $countjeunes; echo ' étudiants ont postulés à vos offres.</h6>
                     </article>
                     ';
                 }

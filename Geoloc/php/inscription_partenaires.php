@@ -13,23 +13,11 @@ try
         
         
         if ($count == 0) { //Si la table ne compte aucun mail identique alors on ajoute à la BDD
-              
-            // insertion des données dans les champs de la table
-            $req = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW())");
-                // Affectation des variables
-    
-            $req->execute(array(
-	           ':nom' => $_POST['nom'],
-	           ':prenom' => $_POST['prenom'],
-	           ':fonction' => $_POST['fonction'],
-	           ':passw' => $_POST['passw'],
-               ':mail' => $_POST['mail'],
-               ':grade' => 'entreprise'
-       ));
-
+            
             $vsiret = $bdd->query("SELECT * FROM entreprise WHERE siret = '".$_POST['Siret']."'") ;
-            $count = $vsiret->rowCount();
-            if($count == 0) {
+            $counter = $vsiret->rowCount();
+
+            if($counter == 0) {
        
                 $req = $bdd->prepare("INSERT INTO entreprise(nom, siret) VALUES(:entreprise, :siret)");
 
@@ -44,9 +32,25 @@ try
 
 
 
-            } else if ($count == 1) {
+            } else if ($counter > 0) {
                 $req = $bdd->query("INSERT INTO users(id_entreprise) VALUES($vsiret)");
             }
+
+
+            // insertion des données dans les champs de la table
+            $req = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW())");
+                // Affectation des variables
+    
+            $req->execute(array(
+	           ':nom' => $_POST['nom'],
+	           ':prenom' => $_POST['prenom'],
+	           ':fonction' => $_POST['fonction'],
+	           ':passw' => $_POST['passw'],
+               ':mail' => $_POST['mail'],
+               ':grade' => 'entreprise'
+       ));
+
+            
 
             header('Location: chargement.php');
             

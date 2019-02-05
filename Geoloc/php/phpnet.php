@@ -7,15 +7,15 @@ use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'PHPMailer/vendor/autoload.php';
-$bdd = new PDO('mysql:host=localhost;dbname=geoloc;charset=utf8', 'root', 'root');
+$bdd = new PDO('mysql:host=localhost;dbname=Geoloc2;charset=utf8', 'root', 'root');
 $select1 = $bdd->query("SELECT id_partenaire, id, titre FROM ajout_offre WHERE id = '".$_GET['id']."'" ) ;
 $recup = $select1->fetch(PDO::FETCH_ASSOC);
 
-$select2 = $bdd->query("SELECT id, mail, nom FROM partenaires WHERE id = '".$recup['id_partenaire']."'" ) ;
+$select2 = $bdd->query("SELECT id, email, nom FROM users WHERE id = '".$recup['id_partenaire']."'" ) ;
 
 $recup2 = $select2->fetch(PDO::FETCH_ASSOC);
 
-$select3 = $bdd->query("SELECT id, prenom, nom, mail FROM jeunes WHERE id = '".$_SESSION['etudiant']['id']."'" ) ;
+$select3 = $bdd->query("SELECT id, prenom, nom, email FROM users WHERE id = '".$_SESSION['jeunes']['id']."'" ) ;
 
 $recup3 = $select2->fetch(PDO::FETCH_ASSOC);
 
@@ -47,7 +47,7 @@ try {
 
     //Recipients
     $mail->setFrom('noreply@jeremytchiss.fr', 'GeoLoc');
-    $address = $recup2['mail'];
+    $address = $recup2['email'];
     $nom = $recup2['nom'];
     $mail->addAddress($address, $nom);     // Add a recipient
 
@@ -56,9 +56,9 @@ try {
     $mail->isHTML(true);                                  // Set email format to HTML
     $titre = $recup['titre'];
     $mail->Subject = "Candidature $titre";
-    $destnom = $_SESSION['etudiant']['nom'];
-    $destprenom = $_SESSION['etudiant']['prenom'];
-    $link = $_SESSION['etudiant']['id'];
+    $destnom = $_SESSION['jeunes']['nom'];
+    $destprenom = $_SESSION['jeunes']['prenom'];
+    $link = $_SESSION['jeunes']['id'];
     $mail->Body    = "<b>Nouvelle Candidature sur GeoLoc !<br>Voici le profil du candidat : il se prénomme $destnom $destprenom.</b><br> <a href='http://localhost/Projet/Geoloc/php/candidatures.php?id=$link'>Cliquez ici !</a>";
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
@@ -87,7 +87,7 @@ try {
 
     //Recipients
     $mail2->setFrom('noreply@jeremytchiss.fr', 'GeoLoc Assistant');
-    $address = $recup4['mail'];
+    $address = $recup4['email'];
     $nom = $recup4['nom'];
     $mail2->ClearAllRecipients();
     $mail2->addAddress($address, $nom);     // Add a recipient
@@ -120,7 +120,7 @@ try {
 
    $mail2->send();
      echo '<script>alert("Candidature envoyée.");</script>';
-            header("refresh:0.1;url=../index.php");
+            header("refresh:0.1;url=../offres.php");
 } catch (Exception $e) {
     echo 'Message could not be sent. Mailer Error: ', $mail2->ErrorInfo;
 }
