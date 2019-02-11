@@ -17,46 +17,80 @@ try
             $counter = $vsiret->rowCount();
 
             if($counter == 0) {
-        
+                $req2 = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout, gender) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW(), :gender)");
+                // Affectation des variables
+    
+                $req2->execute(array(
+	            ':nom' => $_POST['nom'],
+	            ':prenom' => $_POST['prenom'],
+	            ':fonction' => $_POST['fonction'],
+	            ':passw' => $_POST['passw'],
+                ':mail' => $_POST['mail'],
+                ':grade' => 'entreprise',
+                ':gender' => $_POST['gender']
+                ));
                 $req = $bdd->prepare("INSERT INTO entreprise(nom, siret) VALUES(:entreprise, :siret)");
 
                 $req->execute(array(
                 ':entreprise' => $_POST['entreprise'],
                 ':siret' => $_POST['Siret']
-
-
                 ));
 
-                $req = $bdd->prepare("INSERT INTO users(id_entreprise) VALUES(:entreprise)");
-                $req->execute(array(
-                    ':entreprise' => $vsiret
-                ));
+                $vsiret = $bdd->query("SELECT id FROM entreprise WHERE siret = '".$_POST['Siret']."'");
+                echo $vsiret;
+                
+                $join = $bdd->query("INSERT INTO  users(id_entreprise) VALUES('".$vsiret."') WHERE email = '".$_POST['mail']."'");
+
+
+
+
+
+
+
+                // $req = $bdd->prepare("INSERT INTO entreprise(nom, siret) VALUES(:entreprise, :siret)");
+
+                // $req->execute(array(
+                // ':entreprise' => $_POST['entreprise'],
+                // ':siret' => $_POST['Siret']
+                // ));
+                // echo "Hello world 1";
+                // $id_part = $bdd->query("SELECT id FROM entreprise WHERE siret = '".$_POST['Siret']."'");
+                // echo $id_part;
+                // $req2 = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout, id_entreprise, gender) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW(), :entreprise, :gender)");
+                // // Affectation des variables
+    
+                // $req2->execute(array(
+	            // ':nom' => $_POST['nom'],
+	            // ':prenom' => $_POST['prenom'],
+	            // ':fonction' => $_POST['fonction'],
+	            // ':passw' => $_POST['passw'],
+                // ':mail' => $_POST['mail'],
+                // ':grade' => 'entreprise',
+                // ':entreprise' => $id_part,
+                // ':gender' => $_POST['gender']
+                // ));
+                // echo "Hello world 2";
 
 
 
             } else {
-                $req = $bdd->prepare("INSERT INTO users(id_entreprise) VALUES(:entreprise)");
-                $req->execute(array(
-                    ':entreprise' => $vsiret
-                ));
-            }
 
+                $id_part = $bdd->query("SELECT id FROM entreprise WHERE siret = '".$_POST['Siret']."'");
 
-            // insertion des données dans les champs de la table
-            $req = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout, id_entreprise) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW(), :entreprise)");
+                $req2 = $bdd->prepare("INSERT INTO users(nom, prenom, fonction, passw, email, grade, date_ajout, id_entreprise, gender) VALUES(:nom, :prenom, :fonction, :passw, :mail, :grade, NOW(), :entreprise, :gender)");
                 // Affectation des variables
     
-            $req->execute(array(
-	           ':nom' => $_POST['nom'],
-	           ':prenom' => $_POST['prenom'],
-	           ':fonction' => $_POST['fonction'],
-	           ':passw' => $_POST['passw'],
-               ':mail' => $_POST['mail'],
-               ':grade' => 'entreprise',
-               ':entreprise' => $vsiret
-            ));
-
-            
+                $req2->execute(array(
+	            ':nom' => $_POST['nom'],
+	            ':prenom' => $_POST['prenom'],
+	            ':fonction' => $_POST['fonction'],
+	            ':passw' => $_POST['passw'],
+                ':mail' => $_POST['mail'],
+                ':grade' => 'entreprise',
+                ':entreprise' => $id_part,
+                ':gender' => $_POST['gender']
+                ));
+            }      
 
             header('Location: chargement.php');
             
